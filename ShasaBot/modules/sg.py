@@ -1,7 +1,7 @@
-​#Copyright (C) 2021 AsunaRobot
-#made by @The_Ghost_Hunter on Telegram. 
-#github account : https://github.com/HuntingBots/
-#This file is part of AsunaRobot (Telegram Bot)
+​# Copyright (C) 2021 ShasaBot
+# made by @The_Ghost_Hunter on Telegram. 
+# github account : https://github.com/HuntingBots/
+# This file is part of AsunaRobot (Telegram Bot)
 
 import datetime 
 import asyncio
