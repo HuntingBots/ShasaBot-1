@@ -7,7 +7,6 @@ import spamwatch
 import telegram.ext as tg
 from pyrogram import Client, errors
 from telethon import TelegramClient
-from telethon.sessions import StringSession
 
 StartTime = time.time()
 
@@ -82,7 +81,6 @@ if ENV:
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
-    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', True))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
@@ -93,17 +91,14 @@ if ENV:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
-
     
 #-----------------------------------------------ShasaBot/services/telethonuserbot.py (ENV)-------------------------------------------------------    
     STRING_SESSION = os.environ.get("STRING_SESSION", True)
     APP_ID = os.environ.get("APP_ID", True)
     APP_HASH = os.environ.get("APP_HASH", True)
 #------------------------------------------------------------------------------------------------------------------------------
-
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
@@ -144,8 +139,6 @@ else:
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
 
-   
-
     EVENT_LOGS = Config.EVENT_LOGS
     WEBHOOK = Config.WEBHOOK
     URL = Config.URL
@@ -179,7 +172,6 @@ else:
     SPAMWATCH_API = Config.SPAMWATCH_API
     INFOPIC = Config.INFOPIC
     REDIS_URL = Config.REDIS_URL
-    STRING_SESSION = Config.STRING_SESSION
     
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
@@ -188,7 +180,7 @@ else:
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
-DEV_USERS.add(1837687523)
+DEV_USERS.add(1665347268)
 
 if not SPAMWATCH_API:
     sw = None
@@ -200,16 +192,10 @@ else:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
 
-ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
-try:
-    ubot.start()
-except BaseException:
-    print("Userbot Error ! Have you added a STRING_SESSION in deploying??")
-    sys.exit(1)
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
-telethn = TelegramClient("shasa", API_ID, API_HASH)
-pbot = Client("shasapbot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+telethn = TelegramClient("yone", API_ID, API_HASH)
+pbot = Client("yonepbot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 dispatcher = updater.dispatcher
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
@@ -219,7 +205,7 @@ DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 
 # Load at end to ensure all prev variables have been set
-from ShasaBot.modules.helper_funcs.handlers import (
+from AsunaRobot.modules.helper_funcs.handlers import (
     CustomCommandHandler,
     CustomMessageHandler,
     CustomRegexHandler,
@@ -229,5 +215,3 @@ from ShasaBot.modules.helper_funcs.handlers import (
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
-
-
