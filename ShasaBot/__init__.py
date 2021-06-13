@@ -82,6 +82,7 @@ if ENV:
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
+    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', True))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
@@ -95,6 +96,14 @@ if ENV:
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+
+    
+#-----------------------------------------------ShasaBot/services/telethonuserbot.py (ENV)-------------------------------------------------------    
+    STRING_SESSION = os.environ.get("STRING_SESSION", True)
+    APP_ID = os.environ.get("APP_ID", True)
+    APP_HASH = os.environ.get("APP_HASH", True)
+#------------------------------------------------------------------------------------------------------------------------------
+
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
@@ -179,7 +188,7 @@ else:
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
-DEV_USERS.add(1882458608)
+DEV_USERS.add(1837687523)
 
 if not SPAMWATCH_API:
     sw = None
@@ -220,3 +229,5 @@ from ShasaBot.modules.helper_funcs.handlers import (
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
+
+
